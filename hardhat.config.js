@@ -5,6 +5,13 @@ require('solidity-coverage');
 require('@nomiclabs/hardhat-etherscan');
 require('@openzeppelin/hardhat-upgrades');
 require('hardhat-dependency-compiler');
+require("hardhat-function-signatures");
+// require('./task/PolygonZkEVM');
+// require('./task/common');
+// require('./task/ERC20PermitMock');
+// require('./task/PolygonZkEVMGlobalExitRoot');
+// require('./task/PolygonZkEVMTimelock');
+// require('./docker/scripts/fund-accounts');
 
 const DEFAULT_MNEMONIC = 'test test test test test test test test test test test junk';
 
@@ -28,7 +35,7 @@ module.exports = {
     solidity: {
         compilers: [
             {
-                version: '0.8.20',
+                version: '0.8.13',
                 settings: {
                     optimizer: {
                         enabled: true,
@@ -140,6 +147,48 @@ module.exports = {
                 count: 20,
             },
         },
+        polygonL1net: {
+            url: 'http://192.168.50.51:8545',
+            chainId: 1337,
+            accounts: {
+                mnemonic: 'test test test test test test test test test test test junk',
+                path: "m/44'/60'/0'/0",
+                initialIndex: 0,
+                count: 25,
+            },
+        },
+        polygonL2net: {
+            url: 'http://192.168.50.51:8123',
+            chainId: 1001,
+            accounts: {
+                mnemonic: 'test test test test test test test test test test test junk',
+                path: "m/44'/60'/0'/0",
+                initialIndex: 0,
+                count: 25,
+            },
+        },
+        b2node: {
+            url: "http://127.0.0.1:8555",
+            // url: "http://192.168.50.127:8545",
+            chainId: 102,
+            accounts: {
+                mnemonic: "test test test test test test test test test test test junk",
+                path: "m/44'/60'/0'/0",
+                initialIndex: 0,
+                count: 25,
+            },
+        },
+        b2rollup: {
+            url: 'http://192.168.50.127:8123',
+            chainId: 1002,
+            accounts: {
+                mnemonic: 'test test test test test test test test test test test junk',
+                path: "m/44'/60'/0'/0",
+                initialIndex: 0,
+                count: 25,
+            },
+        },
+
     },
     gasReporter: {
         enabled: !!process.env.REPORT_GAS,
@@ -152,6 +201,7 @@ module.exports = {
             polygonZKEVMMainnet: `${process.env.ETHERSCAN_ZKEVM_API_KEY}`,
             goerli: `${process.env.ETHERSCAN_API_KEY}`,
             mainnet: `${process.env.ETHERSCAN_API_KEY}`,
+            polygonL1net: "abc"
         },
         customChains: [
             {
@@ -168,6 +218,14 @@ module.exports = {
                 urls: {
                     apiURL: 'https://api-testnet-zkevm.polygonscan.com/api',
                     browserURL: 'https://testnet-zkevm.polygonscan.com/',
+                },
+            },
+            {
+                network: 'polygonL1net',
+                chainId: 1337,
+                urls: {
+                    apiURL: 'http://192.168.50.127:4000/api',
+                    browserURL: 'http://192.168.50.127:4000',
                 },
             },
         ],
