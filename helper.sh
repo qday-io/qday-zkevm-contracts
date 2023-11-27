@@ -66,16 +66,17 @@ verify() {
 }
 
 initRollup() {
-    exec >"$FUNCNAME-$DATE.log" 2>&1
+    # exec >"$FUNCNAME-$DATE.log" 2>&1
     set -e
     # repo: git@github.com:b2network/b2-node-single-client-all-data.git
-    L1NETWORK_DOCKER_COMPOSE_DIR=/ssd/code/work/b2network/single-client-datadir
+    L1NETWORK_DOCKER_COMPOSE_DIR=/root/b2-node-single-client-all-data
     cd $L1NETWORK_DOCKER_COMPOSE_DIR
     docker-compose down
     bash helper.sh restore
     docker-compose up -d
-    sleep 5s
+    sleep 10s
     docker-compose ps
+    docker-compose logs --tail 20
     cd -
     npm run docker:contracts
     cd $L1NETWORK_DOCKER_COMPOSE_DIR
@@ -119,8 +120,8 @@ debug() {
     # for net in polygonL1net; do
     # for net in polygonL2net; do
     # for net in b2node; do
-    for net in b2rollup; do
-        # for net in b2node b2rollup; do
+    # for net in b2rollup; do
+        for net in b2node b2rollup; do
         # run $net simpleTransfer
         # run $net simpleTransfer --help
         # run $net simpleTransfer --init-account-balance 9000
