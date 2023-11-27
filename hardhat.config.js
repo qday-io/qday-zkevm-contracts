@@ -6,11 +6,11 @@ require('@nomiclabs/hardhat-etherscan');
 require('@openzeppelin/hardhat-upgrades');
 require('hardhat-dependency-compiler');
 require("hardhat-function-signatures");
-// require('./task/PolygonZkEVM');
-// require('./task/common');
-// require('./task/ERC20PermitMock');
-// require('./task/PolygonZkEVMGlobalExitRoot');
-// require('./task/PolygonZkEVMTimelock');
+require('./task/PolygonZkEVM');
+require('./task/common');
+require('./task/ERC20PermitMock');
+require('./task/PolygonZkEVMGlobalExitRoot');
+require('./task/PolygonZkEVMTimelock');
 // require('./docker/scripts/fund-accounts');
 
 const DEFAULT_MNEMONIC = 'test test test test test test test test test test test junk';
@@ -168,8 +168,8 @@ module.exports = {
             },
         },
         b2node: {
-            url: "http://127.0.0.1:8555",
-            // url: "http://192.168.50.127:8545",
+            // url: "http://127.0.0.1:8555",
+            url: "http://192.168.50.127:8545",
             chainId: 102,
             accounts: {
                 mnemonic: "test test test test test test test test test test test junk",
