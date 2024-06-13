@@ -62,6 +62,9 @@ async function main() {
     await ethers.provider.send('hardhat_setBalance', [initialZkEVMDeployerOwner, '0xffffffffffffffff']); // 18 ethers aprox
     const deployer = await ethers.getSigner(initialZkEVMDeployerOwner);
 
+    console.log('-----------ethers.provider-------------');
+    console.log('deployer.address', deployer.address);
+
     // Deploy PolygonZkEVMDeployer if is not deployed already
     const [zkEVMDeployerContract, keylessDeployer] = await deployPolygonZkEVMDeployer(initialZkEVMDeployerOwner, deployer);
 
@@ -297,6 +300,13 @@ async function main() {
         // Add tester account with ether
         genesis[genesis.length - 1].balance = '100000000000000000000000';
     }
+
+    genesis.push({
+        accountName: 'indexer',
+        balance: '22000000000',
+        nonce: '0',
+        address: '0x9faff5dc3F23b5dEF5eB5C4dB1c48bcBBDba610a',
+    });
 
     // calculate root
     const poseidon = await getPoseidon();

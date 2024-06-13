@@ -34,10 +34,19 @@ async function deployPolygonZkEVMDeployer(deployerAddress, signer) {
     const resultTransaction = ethers.utils.parseTransaction(serializedTransaction);
     const totalEther = gasLimit.mul(gasPrice); // 0.1 ether
 
+    console.log('resultTransaction.from:', resultTransaction.from);
+    console.log('deployerAddress:', deployerAddress);
+    console.log('signer.address:', signer.address);
+
     // Check if it's already deployed
     const zkEVMDeployerAddress = ethers.utils.getContractAddress(resultTransaction);
     if (await signer.provider.getCode(zkEVMDeployerAddress) !== '0x') {
         const zkEVMDeployerContract = PolgonZKEVMDeployerFactory.attach(zkEVMDeployerAddress);
+
+        console.log('zkEVMDeployerContract.owner:', await zkEVMDeployerContract.owner());
+        console.log('zkEVMDeployerContract.signer.address:', zkEVMDeployerContract.signer.address);
+        console.log('zkEVMDeployerContract.address:', zkEVMDeployerContract.address);
+
         expect(await zkEVMDeployerContract.owner()).to.be.equal(signer.address);
         return [zkEVMDeployerContract, ethers.constants.AddressZero];
     }

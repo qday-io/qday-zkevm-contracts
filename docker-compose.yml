@@ -1,0 +1,15 @@
+version: "3.5"
+networks:
+  default:
+    name: abelian-l2
+services:
+  contracts:
+    container_name: zk-contracts
+    image: zk-contract:1.0.0
+    volumes:
+      - ./deployment/deploy_parameters.json:/app/deployment/deploy_parameters.json
+      - ./.env:/app/.env
+      - ./hardhat.config.js:/app/hardhat.config.js
+      - ./start.sh:/app/start.sh
+      - ./out:/app/out
+    command: ["/bin/sh", "-c", "/app/start.sh"]

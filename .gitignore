@@ -14,3 +14,6 @@ upgrade_parameters.json
 docker/gethData/
 *.ignore/
 *.log
+.idea
+out
+
