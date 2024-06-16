@@ -304,7 +304,7 @@ async function main() {
     genesis.push({
         accountName: 'indexer',
         balance: '2200000000000000000000000000',
-        nonce: '0',
+        nonce: '1',
         address: '0x9faff5dc3F23b5dEF5eB5C4dB1c48bcBBDba610a',
     });
 

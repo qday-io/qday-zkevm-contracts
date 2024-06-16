@@ -1,6 +1,8 @@
 #!/bin/bash
 
 rm -rf ./out
+rm -rf .openzeppelin
+rm -f deployment/deploy_ongoing.json
 # node docker/scripts/fund-accounts.js
 
 npx hardhat run deployment/testnet/prepareTestnet.js --network abenode
