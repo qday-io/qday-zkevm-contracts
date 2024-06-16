@@ -170,7 +170,6 @@ module.exports = {
         abenode: {
             // url: "http://127.0.0.1:8555",
             url: 'http://124.243.132.119:8545',
-            chainId: 102,
             accounts: {
                 mnemonic: 'test test test test test test test test test test test junk',
                 path: "m/44'/60'/0'/0",

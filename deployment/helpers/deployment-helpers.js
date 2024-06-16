@@ -62,6 +62,8 @@ async function deployPolygonZkEVMDeployer(deployerAddress, signer) {
     await (await signer.provider.sendTransaction(serializedTransaction)).wait();
 
     const zkEVMDeployerContract = await PolgonZKEVMDeployerFactory.attach(zkEVMDeployerAddress);
+    console.log('zkEVMDeployerContract.owner:', await zkEVMDeployerContract.owner());
+    console.log('zkEVMDeployerContract.signer.address:', zkEVMDeployerContract.signer.address);
     expect(await zkEVMDeployerContract.owner()).to.be.equal(deployerAddress);
     return [zkEVMDeployerContract, resultTransaction.from];
 }

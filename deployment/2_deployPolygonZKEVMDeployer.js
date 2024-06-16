@@ -56,6 +56,9 @@ async function main() {
         throw new Error('Missing parameter: initialZkEVMDeployerOwner');
     }
 
+    console.log('step2:initialZkEVMDeployerOwner:', initialZkEVMDeployerOwner);
+    console.log('step2:deployer.address:', deployer.address);
+
     // Deploy PolygonZkEVMDeployer if is not deployed already using keyless deployment
     const [zkEVMDeployerContract, keylessDeployer] = await deployPolygonZkEVMDeployer(initialZkEVMDeployerOwner, deployer);
     if (keylessDeployer === ethers.constants.AddressZero) {
@@ -65,6 +68,9 @@ async function main() {
         console.log('#######################\n');
         console.log('polygonZkEVMDeployer deployed on: ', zkEVMDeployerContract.address);
     }
+
+    console.log('step2:zkEVMDeployerContract.owner:', await zkEVMDeployerContract.owner());
+    console.log('step2:zkEVMDeployerContract.signer.address:', zkEVMDeployerContract.signer.address);
 
     deployParameters.zkEVMDeployerAddress = zkEVMDeployerContract.address;
     fs.writeFileSync(pathDeployParameters, JSON.stringify(deployParameters, null, 1));
