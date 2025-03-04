@@ -3,7 +3,7 @@
 const ethers = require('ethers');
 require('dotenv').config();
 
-const DEFAULT_MNEMONIC = 'test test test test test test test test test test test junk';
+const DEFAULT_MNEMONIC = 'test test test test test test test test test test test zero';
 const DEFAULT_NUM_ACCOUNTS = 20;
 
 async function main() {

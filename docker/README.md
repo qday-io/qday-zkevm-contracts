@@ -1,6 +1,6 @@
 # Docker deployment
 
-By default the following mnemonic will be used to deploy the smart contracts `MNEMONIC="test test test test test test test test test test test junk"`.
+By default the following mnemonic will be used to deploy the smart contracts `MNEMONIC="test test test test test test test test test test test zero"`.
 Also the first 20 accounts of this mnemonic will be funded with ether.
 The first account of the mnemonic will be the deployer of the smart contracts and therefore the holder of all the MATIC test tokens, which are necessary to pay the `sendBatch` transactions.
 You can change the deployment `mnemonic` creating a `.env` file in the project root with the following variable:

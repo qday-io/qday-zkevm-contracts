@@ -1,16 +1,37 @@
 #!/bin/bash
-sudo rm -rf docker/gethData/geth_data
-DEV_PERIOD=1 docker compose -f docker/docker-compose.geth.yml up -d geth
-sleep 5
+
+# Initialize ethermint
+./docker/scripts/init-ethermint.sh
+
+# Remove deploymentOutput directory if it exists
+rm -fr docker/deploymentOutput
+
+# Start ethermint
+docker compose -f docker/docker-compose.yml up -d
+sleep 30
+
+# Fund accounts
 node docker/scripts/fund-accounts.js
+
+# Copy deploy_parameters_docker.json and genesis_docker.json to deployment directory
 cp docker/scripts/deploy_parameters_docker.json deployment/deploy_parameters.json
 cp docker/scripts/genesis_docker.json deployment/genesis.json
-npx hardhat run deployment/testnet/prepareTestnet.js --network localhost
-npx hardhat run deployment/2_deployPolygonZKEVMDeployer.js --network localhost
-npx hardhat run deployment/3_deployContracts.js --network localhost
+
+# Run deploy script
+npm run deploy:testnet:ZkEVM:localhost
+
+# Create deploymentOutput directory
 mkdir docker/deploymentOutput
+
+# Move deploy_output.json to deploymentOutput directory
 mv deployment/deploy_output.json docker/deploymentOutput
-docker compose -f docker/docker-compose.geth.yml down
-sudo docker build -t hermeznetwork/geth-zkevm-contracts -f docker/Dockerfile.geth .
-# Let it readable for the multiplatform build coming later!
-sudo chmod -R go+rxw docker/gethData
+
+# Stop ethermint
+docker compose -f docker/docker-compose.yml down
+
+# Build docker image
+sudo chown -R $(id -u):$(id -g) docker/ethermintData
+docker build -t ethermint-zkevm-contracts -f docker/Dockerfile .
+
+# Remove files if they exist
+rm -fr docker/ethermintData deployment/deploy_parameters.json

@@ -1,0 +1,13 @@
+services:
+
+  ethermint:
+    image: ghcr.io/abelianl2/abe-node:20240611-130906-9e4c7ad
+    ports: [ "8545:8545" ]
+    volumes: [ "./ethermintData:/root/.ethermintd:Z" ]
+    command:
+      - ethermintd
+      - start
+      - --json-rpc.address
+      - 0.0.0.0:8545
+      - --json-rpc.api
+      - "eth,debug,net,txpool,personal,web3"
