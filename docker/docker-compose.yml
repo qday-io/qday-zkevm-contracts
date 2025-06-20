@@ -1,7 +1,7 @@
 services:
 
   ethermint:
-    image: ghcr.io/abelianl2/abe-node:20240611-130906-9e4c7ad
+    image: ghcr.io/qday-io/qday-da-node:sha-458d82d
     ports: [ "8545:8545" ]
     volumes: [ "./ethermintData:/root/.ethermintd:Z" ]
     command:

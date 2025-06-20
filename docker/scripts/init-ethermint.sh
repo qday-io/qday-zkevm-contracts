@@ -17,9 +17,9 @@ command -v wget > /dev/null 2>&1 || { echo >&2 "wget not installed."; exit 1; }
 
 # Download and prepare ethermintd binary
 cd docker
-wget https://github.com/abelianl2/abe-node/releases/download/v0.1.0/abe-node-deploy.tar.gz
-tar xf abe-node-deploy.tar.gz
-mv abe-node-deploy/bin/ethermintd .
+wget https://github.com/qday-io/qday-da-node/releases/download/v0.1.1/qday-node-deploy.tar.gz
+tar xf qday-node-deploy.tar.gz
+mv qday-node-deploy/bin/ethermintd .
 
 # Make install
 ./ethermintd config keyring-backend $KEYRING
@@ -91,7 +91,7 @@ if [[ $1 == "pending" ]]; then
 fi
 
 # Clean up
-rm -fr abe-node-deploy abe-node-deploy.tar.gz ethermintd
+rm -fr qday-node-deploy qday-node-deploy.tar.gz ethermintd
 
 # Move ethermintd directory to docker folder
 mv ~/.ethermintd ./ethermintData

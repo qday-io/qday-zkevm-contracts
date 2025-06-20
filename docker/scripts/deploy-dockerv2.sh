@@ -10,6 +10,9 @@ rm -fr docker/deploymentOutput
 docker compose -f docker/docker-compose.yml up -d
 sleep 30
 
+# Build parameters
+node docker/scripts/build_parameters.js
+
 # Fund accounts
 node docker/scripts/fund-accounts.js
 
@@ -25,6 +28,8 @@ mkdir docker/deploymentOutput
 
 # Move deploy_output.json to deploymentOutput directory
 mv deployment/deploy_output.json docker/deploymentOutput
+cp docker/scripts/deploy_parameters_docker.json docker/deploymentOutput/deploy_parameters.json
+cp docker/scripts/genesis_docker.json docker/deploymentOutput/genesis.json
 
 # Stop ethermint
 docker compose -f docker/docker-compose.yml down

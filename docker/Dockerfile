@@ -1,4 +1,4 @@
-FROM ghcr.io/abelianl2/abe-node:20240611-130906-9e4c7ad
+FROM ghcr.io/qday-io/qday-da-node:sha-458d82d
 
 EXPOSE 8545
 

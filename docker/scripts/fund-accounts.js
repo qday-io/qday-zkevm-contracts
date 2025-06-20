@@ -12,6 +12,8 @@ async function main() {
     const signerNode = await currentProvider.getSigner();
     const numAccountsToFund = process.env.NUM_ACCOUNTS || DEFAULT_NUM_ACCOUNTS;
 
+    console.log('signerNode.getAddress()', await signerNode.getAddress());
+
     for (let i = 0; i < numAccountsToFund; i++) {
         const pathWallet = `m/44'/60'/0'/0/${i}`;
         const accountWallet = ethers.Wallet.fromMnemonic(MNEMONIC, pathWallet);
