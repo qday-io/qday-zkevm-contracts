@@ -27,9 +27,7 @@ npm run deploy:testnet:ZkEVM:localhost
 mkdir docker/deploymentOutput
 
 # Move deploy_output.json to deploymentOutput directory
-mv deployment/deploy_output.json docker/deploymentOutput
-cp docker/scripts/deploy_parameters_docker.json docker/deploymentOutput/deploy_parameters.json
-cp docker/scripts/genesis_docker.json docker/deploymentOutput/genesis.json
+cp deployment/deploy_output.json docker/deploymentOutputon
 
 # Stop ethermint
 docker compose -f docker/docker-compose.yml down
@@ -39,4 +37,4 @@ sudo chown -R $(id -u):$(id -g) docker/ethermintData
 docker build -t ethermint-zkevm-contracts -f docker/Dockerfile .
 
 # Remove files if they exist
-rm -fr docker/ethermintData deployment/deploy_parameters.json
+rm -fr docker/ethermintData
