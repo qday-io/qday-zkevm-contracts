@@ -1,12 +1,17 @@
 #!/bin/bash
 
+# Load .env file
+set -a
+[ -f ../../.env ] && . ../../.env
+set +a
+
 # Variables
 KEY="mykey"
 CHAINID="ethermint_9000-1"
 MONIKER="localtestnet"
 KEYRING="test"
 KEYALGO="eth_secp256k1"
-MNEMONIC=${MNEMONIC:-"test test test test test test test test test test test zero"}
+MNEMONIC=${MNEMONIC}
 
 # Validate dependencies are installed
 command -v jq > /dev/null 2>&1 || { echo >&2 "jq not installed."; exit 1; }
