@@ -41,6 +41,9 @@ const mainnetInitialZkEVMDeployerOwner = '0x4c1665d6651ecEfa59B9B3041951608468b1
 const mainnetMinDelayTimelock = 864000;
 
 async function main() {
+    if (!process.env.MNEMONIC) {
+        throw new Error('MNEMONIC is not set. Please set it in your .env file.');
+    }
     // Constant variables
     const attemptsDeployProxy = 20;
     const networkIDL2 = 1;

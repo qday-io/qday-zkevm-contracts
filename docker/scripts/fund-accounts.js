@@ -8,7 +8,7 @@ const DEFAULT_NUM_ACCOUNTS = 20;
 
 async function main() {
     if (!MNEMONIC) {
-        throw new Error('MNEMONIC not set in .env');
+        throw new Error('MNEMONIC is not set. Please set it in your .env file.');
     }
     const currentProvider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
     const signerNode = await currentProvider.getSigner();
