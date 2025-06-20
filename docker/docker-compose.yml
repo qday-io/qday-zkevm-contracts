@@ -1,0 +1,13 @@
+services:
+
+  ethermint:
+    image: ghcr.io/qday-io/qday-da-node:sha-458d82d
+    ports: [ "8545:8545" ]
+    volumes: [ "./ethermintData:/root/.ethermintd:Z" ]
+    command:
+      - ethermintd
+      - start
+      - --json-rpc.address
+      - 0.0.0.0:8545
+      - --json-rpc.api
+      - "eth,debug,net,txpool,personal,web3"

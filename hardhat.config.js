@@ -13,7 +13,7 @@ require('./task/PolygonZkEVMGlobalExitRoot');
 require('./task/PolygonZkEVMTimelock');
 // require('./docker/scripts/fund-accounts');
 
-const DEFAULT_MNEMONIC = 'test test test test test test test test test test test junk';
+const DEFAULT_MNEMONIC = 'test test test test test test test test test test test zero';
 
 /*
  * You need to export an object to set up your config
@@ -151,7 +151,7 @@ module.exports = {
             url: 'http://192.168.50.51:8545',
             chainId: 1337,
             accounts: {
-                mnemonic: 'test test test test test test test test test test test junk',
+                mnemonic: 'test test test test test test test test test test test zero',
                 path: "m/44'/60'/0'/0",
                 initialIndex: 0,
                 count: 25,
@@ -161,7 +161,7 @@ module.exports = {
             url: 'http://192.168.50.51:8123',
             chainId: 1001,
             accounts: {
-                mnemonic: 'test test test test test test test test test test test junk',
+                mnemonic: 'test test test test test test test test test test test zero',
                 path: "m/44'/60'/0'/0",
                 initialIndex: 0,
                 count: 25,
@@ -171,7 +171,7 @@ module.exports = {
             // url: "http://127.0.0.1:8555",
             url: 'http://124.243.132.119:8545',
             accounts: {
-                mnemonic: 'test test test test test test test test test test test junk',
+                mnemonic: 'test test test test test test test test test test test zero',
                 path: "m/44'/60'/0'/0",
                 initialIndex: 0,
                 count: 25,
@@ -181,7 +181,7 @@ module.exports = {
             url: 'http://192.168.50.127:8123',
             chainId: 1002,
             accounts: {
-                mnemonic: 'test test test test test test test test test test test junk',
+                mnemonic: 'test test test test test test test test test test test zero',
                 path: "m/44'/60'/0'/0",
                 initialIndex: 0,
                 count: 25,

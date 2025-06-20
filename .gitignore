@@ -16,4 +16,5 @@ docker/gethData/
 *.log
 .idea
 out
+.env
 

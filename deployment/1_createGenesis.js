@@ -6,9 +6,7 @@ const fs = require('fs');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const { argv } = require('yargs');
 
-const DEFAULT_MNEMONIC = 'test test test test test test test test test test test junk';
-process.env.HARDHAT_NETWORK = 'hardhat';
-process.env.MNEMONIC = argv.test ? DEFAULT_MNEMONIC : process.env.MNEMONIC;
+const MNEMONIC = process.env.MNEMONIC;
 const { ethers, upgrades } = require('hardhat');
 const {
     MemDB, ZkEVMDB, getPoseidon, smtUtils,
@@ -300,13 +298,6 @@ async function main() {
         // Add tester account with ether
         genesis[genesis.length - 1].balance = '100000000000000000000000';
     }
-
-    genesis.push({
-        accountName: 'indexer',
-        balance: '2200000000000000000000000000',
-        nonce: '1',
-        address: '0x9faff5dc3F23b5dEF5eB5C4dB1c48bcBBDba610a',
-    });
 
     // calculate root
     const poseidon = await getPoseidon();
