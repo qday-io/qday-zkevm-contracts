@@ -1,9 +1,15 @@
 #!/bin/bash
 
-# Load .env file
-set -a
-[ -f ../../.env ] && . ../../.env
-set +a
+# 获取脚本实际所在目录的上两级（即项目根目录）
+ENV_PATH="$(cd "$(dirname "$0")/../.." && pwd)/.env"
+if [ -f "$ENV_PATH" ]; then
+  set -a
+  . "$ENV_PATH"
+  set +a
+else
+  echo "Error: $ENV_PATH not found. Please create .env in project root."
+  exit 1
+fi
 
 # Variables
 KEY="mykey"
@@ -11,7 +17,12 @@ CHAINID="ethermint_9000-1"
 MONIKER="localtestnet"
 KEYRING="test"
 KEYALGO="eth_secp256k1"
-MNEMONIC=${MNEMONIC}
+
+# Import keys from mnemonic
+if [ -z "$MNEMONIC" ]; then
+  echo "Error: MNEMONIC is not set. Please set it in your .env file."
+  exit 1
+fi
 
 # Validate dependencies are installed
 command -v jq > /dev/null 2>&1 || { echo >&2 "jq not installed."; exit 1; }
@@ -33,7 +44,7 @@ mv qday-node-deploy/bin/ethermintd .
 # Set moniker and chain-id for Ethermint (Moniker can be anything, chain-id must be an integer)
 ./ethermintd init $MONIKER --chain-id $CHAINID
 
-# Import keys from mnemonic
+
 echo "$MNEMONIC" | ./ethermintd keys add $KEY --keyring-backend $KEYRING --algo $KEYALGO --recover
 
 # Change parameter token denominations to aphoton

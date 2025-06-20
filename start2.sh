@@ -23,4 +23,5 @@ sleep 10
 mkdir out
 mv ./deployment/genesis.json ./out/
 mv ./deployment/deploy_output.json ./out/
+mv ./deployment/deploy_parameters.json ./out/
 
