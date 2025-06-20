@@ -3,7 +3,7 @@
 
 const { ethers } = require('hardhat');
 const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config({ path: __dirname + '/../../.env' });
 
 if (process.env && !process.env.MNEMONIC) {
     throw new Error('MNEMONIC is not set. Please set it in your .env file.');

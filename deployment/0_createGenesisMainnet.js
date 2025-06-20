@@ -3,7 +3,7 @@
 const { expect } = require('chai');
 const path = require('path');
 const fs = require('fs');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config({ path: __dirname + '/../../.env' });
 const { argv } = require('yargs');
 
 // const DEFAULT_MNEMONIC = 'test test test test test test test test test test test zero';

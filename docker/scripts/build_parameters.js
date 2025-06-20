@@ -1,9 +1,10 @@
-require('dotenv').config({ path: '../../.env' });
+require('dotenv').config({ path: __dirname + '/../../.env' });
 const fs = require('fs');
 const { Wallet } = require('ethers');
 
 // const mnemonic = 'test test test test test test test test test test test zero'; // 换成你的助记词
 const mnemonic = process.env.MNEMONIC;
+console.log('DEBUG MNEMONIC:', JSON.stringify(mnemonic));
 if (!mnemonic) {
   throw new Error('MNEMONIC is not set. Please set it in your .env file.');
 }

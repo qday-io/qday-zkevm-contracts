@@ -3,7 +3,7 @@
 const { ethers } = require('hardhat');
 const path = require('path');
 const fs = require('fs');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config({ path: __dirname + '/../../.env' });
 
 const { deployPolygonZkEVMDeployer } = require('./helpers/deployment-helpers');
 
