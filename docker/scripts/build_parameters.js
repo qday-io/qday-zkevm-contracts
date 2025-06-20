@@ -1,7 +1,8 @@
 const fs = require('fs');
 const { Wallet } = require('ethers');
 
-const mnemonic = 'test test test test test test test test test test test zero'; // 换成你的助记词
+// const mnemonic = 'test test test test test test test test test test test zero'; // 换成你的助记词
+const mnemonic = process.env.MNEMONIC;
 const filePath = 'docker/scripts/deploy_parameters_docker.json';
 const json = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 
