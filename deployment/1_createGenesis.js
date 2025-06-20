@@ -3,7 +3,7 @@
 const { expect } = require('chai');
 const path = require('path');
 const fs = require('fs');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config({ path: __dirname + '/../../.env' });
 const { argv } = require('yargs');
 
 const MNEMONIC = process.env.MNEMONIC;
@@ -28,6 +28,10 @@ const _ADMIN_SLOT = '0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850
 const _IMPLEMENTATION_SLOT = '0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc';
 
 async function main() {
+    if (!process.env.MNEMONIC) {
+        throw new Error('MNEMONIC is not set. Please set it in your .env file.');
+    }
+
     // Constant variables
     const attemptsDeployProxy = 20;
     const networkIDL2 = 1;

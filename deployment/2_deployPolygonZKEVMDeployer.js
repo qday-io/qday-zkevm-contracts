@@ -3,7 +3,7 @@
 const { ethers } = require('hardhat');
 const path = require('path');
 const fs = require('fs');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config({ path: __dirname + '/../../.env' });
 
 const { deployPolygonZkEVMDeployer } = require('./helpers/deployment-helpers');
 
@@ -42,6 +42,9 @@ async function main() {
     if (deployParameters.deployerPvtKey) {
         deployer = new ethers.Wallet(deployParameters.deployerPvtKey, currentProvider);
     } else if (process.env.MNEMONIC) {
+        if (process.env && !process.env.MNEMONIC) {
+            throw new Error('MNEMONIC is not set. Please set it in your .env file.');
+        }
         deployer = ethers.Wallet.fromMnemonic(process.env.MNEMONIC, 'm/44\'/60\'/0\'/0/0').connect(currentProvider);
     } else {
         [deployer] = (await ethers.getSigners());

@@ -15,6 +15,10 @@ require('./task/PolygonZkEVMTimelock');
 
 const DEFAULT_MNEMONIC = process.env.MNEMONIC;
 
+if (!process.env.MNEMONIC) {
+  throw new Error('MNEMONIC is not set. Please set it in your .env file.');
+}
+
 /*
  * You need to export an object to set up your config
  * Go to https://hardhat.org/config/ to learn more
