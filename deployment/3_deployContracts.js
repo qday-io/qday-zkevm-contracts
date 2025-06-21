@@ -466,6 +466,7 @@ async function main() {
     // TODO test stop here
 
     let timelockContract;
+    let finalDeploymentBlockNumber = 0;
     if (proxyAdminOwner !== deployer.address) {
         // Check if there's a timelock deployed there that match the current deployment
         timelockContract = timelockContractFactory.attach(proxyAdminOwner);
@@ -476,6 +477,9 @@ async function main() {
             'Polygon timelockContract already deployed to:',
             timelockContract.address,
         );
+        
+        // If timelock already exists, set finalDeploymentBlockNumber to 0
+        finalDeploymentBlockNumber = 0;
     } else {
         // deploy timelock
         console.log('\n#######################');
@@ -501,6 +505,9 @@ async function main() {
         // Transfer ownership of the proxyAdmin to timelock
         const proxyAdminContract = proxyAdminFactory.attach(proxyAdminAddress);
         await (await proxyAdminContract.transferOwnership(timelockContract.address)).wait();
+        
+        // Record the deployment block number of the last contract (Timelock)
+        finalDeploymentBlockNumber = (await timelockContract.deployTransaction.wait()).blockNumber;
     }
 
     console.log('\n#######################');
@@ -519,6 +526,7 @@ async function main() {
         deployerAddress: deployer.address,
         timelockContractAddress: timelockContract.address,
         deploymentBlockNumber,
+        finalDeploymentBlockNumber,
         genesisRoot: genesisRootHex,
         trustedSequencer,
         trustedSequencerURL,
