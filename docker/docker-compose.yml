@@ -1,6 +1,7 @@
 services:
 
   ethermint:
+    container_name: ethermint-node
     image: ghcr.io/qday-io/qday-da-node:sha-458d82d
     ports: [ "8545:8545" ]
     volumes: [ "./ethermintData:/root/.ethermintd:Z" ]
