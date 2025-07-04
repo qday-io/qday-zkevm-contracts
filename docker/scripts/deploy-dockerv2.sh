@@ -27,9 +27,6 @@ node docker/scripts/build_parameters.js
 echo "💰 Funding accounts..."
 node docker/scripts/fund-accounts.js
 
-# 导出 ethermint 地址和私钥
-bash docker/scripts/ethermint-key-export.sh
-
 # Copy deploy_parameters_docker.json and genesis_docker.json to deployment directory
 echo "📋 Copying configuration files..."
 cp docker/scripts/deploy_parameters_docker.json deployment/deploy_parameters.json
@@ -43,6 +40,8 @@ npm run deploy:testnet:ZkEVM:localhost
 echo "📊 Getting latest block number..."
 node docker/scripts/get-latest-block.js
 
+# 导出 ethermint 地址和私钥
+#bash docker/scripts/ethermint-key-export.sh
 
 # Create deploymentOutput directory
 echo "📁 Creating deployment output directory..."
